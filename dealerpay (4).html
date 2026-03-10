@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DealerPay.in — Dealer Claims & GST Compliance Experts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#0a1628;
+  --ink2:#132240;
+  --gold:#c8922f;
+  --gold-lt:#e8b84b;
+  --gold-bg:#fdf5e6;
+  --sage:#f0f4f0;
+  --cream:#f8f6f1;
+  --white:#ffffff;
+  --txt:#253040;
+  --muted:#637280;
+  --border:#e6e0d4;
+  --green:#0d9668;
+  --amber:#d97706;
+  --red:#dc2626;
+  --blue:#1d60d6;
+  --r:12px;
+  --rs:7px;
+  --sh:0 4px 24px rgba(10,22,40,.08);
+  --sh2:0 12px 48px rgba(10,22,40,.13);
+  --sh3:0 24px 72px rgba(10,22,40,.18);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--txt);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes slideRight{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+@keyframes barGrow{from{height:0!important}to{}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,150,104,.4)}50%{box-shadow:0 0 0 8px rgba(13,150,104,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes countUp{}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-r.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}.d5{transition-delay:.42s}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--ink);padding:.5rem 5rem;display:flex;justify-content:space-between;align-items:center}
+.tb-l{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.05em}
+.tb-l b{color:var(--gold-lt)}
+.tb-r{display:flex;gap:1.8rem}
+.tb-r a{font-size:.72rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.38rem;transition:color .2s}
+.tb-r a:hover{color:var(--gold-lt)}
+
+/* ── HEADER ── */
+header{background:rgba(255,255,255,.96);padding:0 5rem;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;border-bottom:1px solid var(--border);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:box-shadow .3s,background .3s}
+header.up{box-shadow:0 2px 24px rgba(10,22,40,.09)}
+.logo{display:flex;align-items:baseline;gap:0;font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;color:var(--ink);letter-spacing:-.02em}
+.logo-g{color:var(--gold)}
+.logo-dot{display:inline-block;width:6px;height:6px;background:var(--gold);border-radius:50%;margin:0 1px 3px;flex-shrink:0}
+nav{display:flex;gap:2rem;align-items:center}
+nav>a{font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--txt);transition:color .2s;position:relative;padding:.2rem 0}
+nav>a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--gold);transition:width .25s}
+nav>a:hover{color:var(--gold)}nav>a:hover::after{width:100%}
+.nav-cta{background:var(--gold)!important;color:#fff!important;padding:.55rem 1.4rem;border-radius:var(--rs);font-weight:600!important;transition:all .2s!important;box-shadow:0 2px 12px rgba(200,146,47,.3)}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--ink)!important;box-shadow:0 4px 18px rgba(10,22,40,.2)!important;transform:translateY(-1px)!important}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--white);position:relative;overflow:hidden}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.hero-deco-circle{position:absolute;border-radius:50%;filter:blur(80px)}
+.hdc1{width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(200,146,47,.09),transparent 65%);animation:float 12s ease-in-out infinite}
+.hdc2{width:400px;height:400px;bottom:-100px;left:35%;background:radial-gradient(circle,rgba(29,96,214,.06),transparent 65%);animation:float 9s ease-in-out infinite reverse}
+
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:6rem 4.5rem 6rem 5rem;position:relative;z-index:2}
+.hero-chip{display:inline-flex;align-items:center;gap:.55rem;background:var(--gold-bg);border:1px solid rgba(200,146,47,.22);padding:.42rem 1rem;border-radius:100px;font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);width:fit-content;margin-bottom:2rem;animation:fadeUp .8s ease both}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2.5s infinite}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.8vw,4.4rem);font-weight:900;line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.5rem;animation:fadeUp .8s .1s ease both}
+.hero h1 em{font-style:italic;color:var(--gold);display:block}
+.hero-sub{font-size:1rem;font-weight:300;line-height:1.85;color:var(--muted);max-width:470px;margin-bottom:2.5rem;animation:fadeUp .8s .18s ease both}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3.5rem;animation:fadeUp .8s .26s ease both}
+.btn-fill{background:var(--gold);color:#fff;padding:.88rem 2rem;border-radius:var(--rs);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem;transition:all .28s;box-shadow:0 4px 20px rgba(200,146,47,.36)}
+.btn-fill:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 32px rgba(10,22,40,.2)}
+.btn-ghost{background:transparent;color:var(--ink);padding:.88rem 2rem;border-radius:var(--rs);border:1.5px solid var(--ink);font-weight:600;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem;transition:all .28s}
+.btn-ghost:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.hero-trust{display:flex;gap:0;padding-top:2rem;border-top:1px solid var(--border);animation:fadeUp .8s .34s ease both}
+.ht-item{flex:1;padding:0 2rem 0 0;border-right:1px solid var(--border)}
+.ht-item:not(:first-child){padding-left:2rem}
+.ht-item:last-child{border-right:none}
+.ht-val{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;color:var(--ink);line-height:1}
+.ht-val b{color:var(--gold)}
+.ht-lbl{font-size:.7rem;color:var(--muted);margin-top:.35rem;line-height:1.45;font-weight:400}
+
+/* ── HERO RIGHT — DASHBOARD ── */
+.hero-right{background:linear-gradient(148deg,#0e2240 0%,#091828 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:3rem}
+.hero-right::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.8}
+.hero-right::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(200,146,47,.14) 0%,transparent 50%),radial-gradient(ellipse at 25% 75%,rgba(29,96,214,.08) 0%,transparent 50%)}
+
+/* grid dots */
+.hero-right-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;z-index:0}
+
+.db-stack{position:relative;z-index:1;width:100%;max-width:410px;display:flex;flex-direction:column;gap:.9rem}
+
+/* db card base */
+.dbc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.5rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .3s,box-shadow .3s}
+.dbc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+
+/* card 1 — main kpi */
+.dbc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.3rem}
+.dbc-label{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.dbc-live{display:flex;align-items:center;gap:.35rem;font-size:.6rem;font-weight:600;color:#34d399;letter-spacing:.06em}
+.dbc-live-dot{width:5px;height:5px;background:#34d399;border-radius:50%;animation:pulse 2s infinite}
+
+.dbc-main{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.1rem}
+.dbc-amount{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:#fff;line-height:1}
+.dbc-amount sup{font-size:1.1rem;color:var(--gold-lt);font-family:'DM Sans',sans-serif;font-weight:500;vertical-align:.4em}
+.dbc-main-meta{text-align:right}
+.dbc-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:600;padding:.28rem .7rem;border-radius:100px;margin-bottom:.35rem}
+.badge-green{background:rgba(52,211,153,.14);color:#34d399;border:1px solid rgba(52,211,153,.25)}
+.badge-amber{background:rgba(251,191,36,.14);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.badge-red{background:rgba(248,113,113,.14);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.badge-blue{background:rgba(96,165,250,.14);color:#93c5fd;border:1px solid rgba(96,165,250,.25)}
+.dbc-period{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.04em}
+
+/* mini row */
+.dbc-minis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.1rem}
+.dbm{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:.75rem .8rem}
+.dbm-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:.3rem}
+.dbm-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;line-height:1}
+.dbm-val.c-green{color:#34d399}
+.dbm-val.c-amber{color:#fbbf24}
+.dbm-val.c-red{color:#f87171}
+.dbm-val.c-white{color:#fff}
+
+/* efficiency ring */
+.dbc-ring-row{display:flex;align-items:center;gap:1.2rem}
+.ring-wrap{position:relative;width:76px;height:76px;flex-shrink:0}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-pct{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1}
+.ring-lbl{font-size:.45rem;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px;letter-spacing:.05em}
+.ring-legend{flex:1;display:flex;flex-direction:column;gap:.45rem}
+.rl-item{display:flex;align-items:center;gap:.5rem;font-size:.67rem;color:rgba(255,255,255,.5)}
+.rl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ring animation */
+.ring-arc{stroke-dasharray:0 226;animation:ringFill 1.6s .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes ringFill{to{stroke-dasharray:var(--d,180) 226}}
+
+/* card 2 — bars + table */
+.dbc2-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem}
+.spark-bars{display:flex;align-items:flex-end;gap:.28rem;height:46px;margin-bottom:.4rem}
+.sb-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.sb-bar{width:100%;border-radius:2px 2px 0 0;animation:barGrow .9s cubic-bezier(.34,1.56,.64,1) both}
+.sb-mo{font-size:.52rem;color:rgba(255,255,255,.3);letter-spacing:.02em}
+.sb-bar.active .sb-mo{color:var(--gold-lt)!important}
+
+/* claim rows */
+.claim-rows{margin-top:.85rem;display:flex;flex-direction:column;gap:0}
+.cr-header{display:grid;grid-template-columns:1fr .5fr .7fr .6fr;padding:.28rem .3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.cr-th{font-size:.54rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.28);font-weight:600}
+.cr-row{display:grid;grid-template-columns:1fr .5fr .7fr .6fr;padding:.55rem .3rem;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s;border-radius:4px}
+.cr-row:last-child{border-bottom:none}
+.cr-row:hover{background:rgba(255,255,255,.04)}
+.cr-id{font-size:.68rem;color:#fff;font-weight:500}
+.cr-type{font-size:.64rem;color:rgba(255,255,255,.45)}
+.cr-amt{font-size:.68rem;color:#fff;font-weight:500}
+.cr-tag{font-size:.56rem;padding:.18rem .55rem;border-radius:100px;font-weight:600;width:fit-content}
+.t-g{background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.2)}
+.t-a{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.t-b{background:rgba(96,165,250,.15);color:#93c5fd;border:1px solid rgba(96,165,250,.2)}
+.t-r{background:rgba(248,113,113,.15);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+
+/* eff footer */
+.dbc-eff-bar{margin-top:1rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.07)}
+.dbc-eff-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.dbc-eff-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3)}
+.dbc-eff-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-lt)}
+.eff-track{height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.eff-fill{height:100%;border-radius:2px;animation:barGrow .8s 1.2s cubic-bezier(.4,0,.2,1) both;animation-name:efFill}
+@keyframes efFill{from{width:0!important}to{}}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.8rem 5rem;overflow:hidden}
+.ts-inner{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.ts-lbl{font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.ts-pills{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;flex:1}
+.ts-pill{background:var(--white);border:1px solid var(--border);padding:.38rem 1rem;border-radius:100px;font-size:.75rem;font-weight:500;color:var(--muted);transition:all .2s;white-space:nowrap}
+.ts-pill:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+
+/* ── SECTION BASE ── */
+section{padding:6rem 5rem;position:relative}
+.s-tag{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.s-tag::before{content:'';width:24px;height:1.5px;background:var(--gold)}
+.s-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:1rem}
+.s-h2 em{font-style:italic;color:var(--gold)}
+.s-lead{font-size:.96rem;font-weight:300;line-height:1.85;color:var(--muted);max-width:540px}
+
+/* ── SERVICES ── */
+.svc-section{background:var(--cream)}
+.svc-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3.5rem;align-items:end}
+.svc-header-r p{font-size:.94rem;font-weight:300;color:var(--muted);line-height:1.85}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.svc-card{background:var(--white);border-radius:var(--r);padding:1.9rem 1.6rem;box-shadow:var(--sh);border:1.5px solid transparent;transition:all .32s;position:relative;overflow:hidden;cursor:pointer}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transform:scaleX(0);transform-origin:left;transition:transform .38s cubic-bezier(.22,1,.36,1);border-radius:var(--r) var(--r) 0 0}
+.svc-card:hover{transform:translateY(-7px);box-shadow:var(--sh3);border-color:rgba(200,146,47,.1)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-num{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,146,47,.5);margin-bottom:.7rem}
+.svc-icon-box{width:48px;height:48px;background:var(--gold-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;transition:background .3s,transform .3s}
+.svc-card:hover .svc-icon-box{background:var(--gold);transform:scale(1.05)}
+.svc-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:.65rem;line-height:1.25}
+.svc-desc{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:1rem}
+.svc-ul{list-style:none;display:flex;flex-direction:column;gap:.38rem;margin-bottom:1.1rem}
+.svc-ul li{font-size:.75rem;color:var(--muted);display:flex;align-items:baseline;gap:.45rem;font-weight:400}
+.svc-ul li::before{content:'–';color:var(--gold);font-size:.7rem;flex-shrink:0}
+.svc-more{font-size:.73rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.35rem;transition:gap .2s}
+.svc-card:hover .svc-more{gap:.6rem}
+
+/* ── IMAGE BAND ── */
+.img-band{display:grid;grid-template-columns:1fr 1fr 1fr;height:380px;overflow:hidden;padding:0}
+.ib-cell{position:relative;overflow:hidden;cursor:pointer}
+.ib-img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1),filter .7s}
+.ib-cell:hover .ib-img{transform:scale(1.08);filter:brightness(.6)}
+.ib-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(10,22,40,.88) 100%)}
+.ib-content{position:absolute;bottom:0;left:0;right:0;padding:2rem;transform:translateY(8px);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.ib-cell:hover .ib-content{transform:translateY(0)}
+.ib-tag{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.5rem}
+.ib-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.5rem}
+.ib-desc{font-size:.79rem;color:rgba(255,255,255,.6);line-height:1.62;overflow:hidden;max-height:0;transition:max-height .4s}
+.ib-cell:hover .ib-desc{max-height:80px}
+
+/* ── ABOUT / HOW WE WORK ── */
+.about-section{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 5rem}
+.about-img-col{position:relative}
+.about-img-frame{width:100%;aspect-ratio:3/4;border-radius:18px;overflow:hidden;position:relative}
+.about-img-frame img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.about-img-frame:hover img{transform:scale(1.04)}
+.about-img-shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,22,40,.72) 100%)}
+.about-badge{position:absolute;bottom:1.6rem;left:1.6rem;right:1.6rem;background:rgba(255,255,255,.12);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.9rem}
+.ab-icon{width:38px;height:38px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ab-lbl{font-size:.62rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.06em}
+.ab-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;line-height:1}
+.about-float{position:absolute;top:2.5rem;right:-2rem;background:var(--white);border-radius:12px;padding:1.1rem 1.3rem;box-shadow:var(--sh3);width:160px;animation:float 5s ease-in-out infinite}
+.af-icon{font-size:1.2rem;margin-bottom:.5rem}
+.af-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ink)}
+.af-val b{color:var(--gold)}
+.af-lbl{font-size:.65rem;color:var(--muted);margin-top:.2rem}
+.about-steps{display:flex;flex-direction:column;gap:0;margin:2rem 0}
+.as-item{display:flex;gap:1.1rem;align-items:flex-start;padding:1.2rem 0;border-bottom:1px solid var(--border)}
+.as-item:last-child{border-bottom:none}
+.as-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:rgba(200,146,47,.18);flex-shrink:0;line-height:1;width:32px;padding-top:1px}
+.as-title{font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:.22rem}
+.as-desc{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.65}
+
+/* ── STATS BAND ── */
+.stats-band{background:var(--ink);padding:5rem}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden}
+.st-box{padding:3rem 2.5rem;border-right:1px solid rgba(255,255,255,.07);text-align:center;position:relative;overflow:hidden;transition:background .3s}
+.st-box:last-child{border-right:none}
+.st-box::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(200,146,47,.12),transparent 55%);opacity:0;transition:opacity .3s}
+.st-box:hover{background:rgba(255,255,255,.025)}.st-box:hover::after{opacity:1}
+.st-icon{font-size:1.6rem;margin-bottom:.9rem}
+.st-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.4rem}
+.st-num b,.st-num span{color:var(--gold-lt)}
+.st-lbl{font-size:.68rem;font-weight:400;color:rgba(255,255,255,.38);letter-spacing:.07em;text-transform:uppercase}
+
+/* ── WHY US ── */
+.why-section{background:var(--cream)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3rem}
+.wc{background:var(--white);border-radius:var(--r);padding:1.9rem;box-shadow:var(--sh);display:flex;gap:1.2rem;align-items:flex-start;border:1.5px solid transparent;transition:all .3s}
+.wc:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:rgba(200,146,47,.14)}
+.wc-icon{width:44px;height:44px;background:var(--gold-bg);border:1px solid rgba(200,146,47,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;transition:background .3s}
+.wc:hover .wc-icon{background:var(--gold)}
+.wc-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:.4rem}
+.wc-text{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.75}
+.compare-wrap{margin-top:3.5rem;overflow:hidden;border-radius:var(--r);box-shadow:var(--sh)}
+.ct{width:100%;border-collapse:collapse;background:var(--white)}
+.ct thead tr{background:var(--ink)}
+.ct thead th{padding:1.1rem 1.4rem;font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.45);text-align:left}
+.ct thead th.hl{color:var(--gold-lt);background:rgba(200,146,47,.1)}
+.ct tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+.ct tbody tr:last-child{border-bottom:none}
+.ct tbody tr:hover{background:var(--gold-bg)}
+.ct td{padding:.95rem 1.4rem;font-size:.84rem;color:var(--txt)}
+.ct td.hl{background:rgba(200,146,47,.03)}
+.ty{color:var(--green);font-weight:700}.tn{color:#c8c4bd}
+
+/* ── PROCESS ── */
+.process-section{background:var(--white)}
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3rem;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.pg-step{padding:2.4rem 2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden;z-index:0}
+.pg-step:nth-child(3n){border-right:none}
+.pg-step:nth-child(n+4){border-bottom:none}
+.pg-step::after{content:'';position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .38s cubic-bezier(.22,1,.36,1);z-index:-1}
+.pg-step:hover::after{transform:translateY(0)}
+.pg-step:hover .pg-num{color:rgba(200,146,47,.15)}
+.pg-step:hover .pg-title{color:#fff}
+.pg-step:hover .pg-desc{color:rgba(255,255,255,.48)}
+.pg-step:hover .pg-icon{background:var(--gold)}
+.pg-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:rgba(10,22,40,.06);line-height:1;margin-bottom:.8rem;transition:color .35s}
+.pg-icon{width:42px;height:42px;background:var(--gold-bg);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.1rem;transition:background .35s}
+.pg-title{font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:.5rem;transition:color .35s}
+.pg-desc{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.65;transition:color .35s}
+
+/* ── DASHBOARD SECTION ── */
+.dash-section{background:var(--cream)}
+.dash-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:4rem;align-items:start;margin-top:3.5rem}
+.dash-feats{display:flex;flex-direction:column;gap:1.1rem}
+.df-row{display:flex;gap:1rem;align-items:flex-start;padding:1.3rem;background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1.5px solid transparent;transition:all .28s}
+.df-row:hover{border-color:rgba(200,146,47,.18);transform:translateX(6px)}
+.df-icon{width:40px;height:40px;background:var(--gold-bg);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:background .2s}
+.df-row:hover .df-icon{background:var(--gold)}
+.df-title{font-weight:600;font-size:.88rem;color:var(--ink);margin-bottom:.2rem}
+.df-text{font-size:.79rem;font-weight:300;color:var(--muted);line-height:1.65}
+.dash-mock{background:var(--white);border-radius:var(--r);box-shadow:var(--sh3);overflow:hidden;border:1px solid var(--border)}
+.dm-topbar{background:var(--ink);padding:.75rem 1.2rem;display:flex;align-items:center;gap:.45rem}
+.dm-dot{width:10px;height:10px;border-radius:50%}
+.dm-title{font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-left:.5rem}
+.dm-body{padding:1.3rem}
+.dm-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:1.2rem}
+.dm-kpi{background:var(--cream);border:1px solid var(--border);border-radius:9px;padding:.85rem;position:relative;overflow:hidden}
+.dm-kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;border-radius:9px 9px 0 0}
+.dm-kpi.k1::before{background:var(--gold)}
+.dm-kpi.k2::before{background:var(--green)}
+.dm-kpi.k3::before{background:var(--blue)}
+.dm-kpi-lbl{font-size:.57rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.35rem}
+.dm-kpi-val{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink)}
+.dm-kpi-val.g{color:var(--gold)}.dm-kpi-val.gr{color:var(--green)}
+.dm-chart-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.7rem}
+.dm-bars{display:flex;align-items:flex-end;gap:.35rem;height:58px;margin-bottom:1.1rem}
+.dm-bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.dm-bf{width:100%;border-radius:2px 2px 0 0;animation:barGrow .9s cubic-bezier(.34,1.56,.64,1) both}
+.dm-mo{font-size:.5rem;color:var(--muted)}
+.dm-table{width:100%;border-collapse:collapse}
+.dm-table th{font-size:.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:.38rem .45rem;border-bottom:1px solid var(--border);text-align:left}
+.dm-table td{font-size:.7rem;padding:.55rem .45rem;border-bottom:1px solid rgba(0,0,0,.04);color:var(--txt)}
+.dm-table td:first-child{font-weight:500;color:var(--ink)}
+.dm-table tr:last-child td{border-bottom:none}
+.dt{font-size:.55rem;padding:.18rem .52rem;border-radius:100px;font-weight:600}
+.dt-g{background:#ecfdf5;color:#059669}.dt-a{background:#fffbeb;color:#b45309}.dt-b{background:#eff6ff;color:#1d4ed8}.dt-r{background:#fef2f2;color:#b91c1c}
+
+/* ── GOLD PROMISE BAND ── */
+.promise-band{background:linear-gradient(128deg,#b07a22 0%,var(--gold) 48%,var(--gold-lt) 100%);padding:6rem 5rem;position:relative;overflow:hidden}
+.pb-mesh{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(255,255,255,.08) 0%,transparent 40%),radial-gradient(circle at 80% 50%,rgba(255,255,255,.06) 0%,transparent 40%);pointer-events:none}
+.pb-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1}
+.pb-l h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1.2rem}
+.pb-l p{font-size:.97rem;color:rgba(255,255,255,.78);font-weight:300;line-height:1.85;max-width:400px;margin-bottom:2rem}
+.btn-white{background:#fff;color:var(--gold);padding:.88rem 2rem;border-radius:var(--rs);font-weight:700;font-size:.84rem;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem;transition:all .28s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.btn-white:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.pb-r{display:flex;flex-direction:column;gap:.9rem}
+.pb-pt{background:rgba(255,255,255,.14);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:1.2rem 1.4rem;display:flex;gap:.9rem;align-items:flex-start;transition:background .2s}
+.pb-pt:hover{background:rgba(255,255,255,.22)}
+.pb-icon{width:34px;height:34px;background:rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.pb-title{font-weight:600;font-size:.88rem;color:#fff;margin-bottom:.2rem}
+.pb-text{font-size:.78rem;color:rgba(255,255,255,.68);line-height:1.62;font-weight:300}
+
+/* ── FAQ ── */
+.faq-section{background:var(--white)}
+.faq-layout{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start}
+.faq-aside{position:sticky;top:100px}
+.faq-cats{display:flex;flex-direction:column;gap:.45rem;margin-top:2rem}
+.fc{padding:.82rem 1rem;border-radius:var(--rs);border:1.5px solid var(--border);font-size:.82rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.65rem}
+.fc:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.fc.active{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:600}
+.faq-pane{display:flex;flex-direction:column;gap:0}
+.fg{display:none}.fg.active{display:flex;flex-direction:column;gap:0}
+.fg-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--gold);letter-spacing:.04em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.fi{border-bottom:1px solid var(--border)}
+.fi:first-of-type{border-top:1px solid var(--border)}
+.fi-q{padding:1.2rem 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:1.5rem}
+.fi-q-text{font-weight:500;font-size:.9rem;color:var(--ink);line-height:1.45;flex:1}
+.fi-q:hover .fi-q-text{color:var(--gold)}
+.fi-chevron{width:26px;height:26px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--muted);flex-shrink:0;transition:all .3s}
+.fi.open .fi-chevron{background:var(--gold);color:#fff;transform:rotate(180deg)}
+.fi-a{max-height:0;overflow:hidden;transition:max-height .38s ease}
+.fi.open .fi-a{max-height:600px}
+.fi-a-in{padding:0 0 1.3rem;font-size:.86rem;font-weight:300;color:var(--muted);line-height:1.85}
+.fi-a-in strong{color:var(--ink);font-weight:600}
+.fi-a-in ul{margin:.6rem 0 0 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fi-a-in ul li{font-size:.83rem}
+
+/* ── CTA ── */
+.cta-block{background:var(--ink);padding:0;display:grid;grid-template-columns:1fr 1fr}
+.cta-l{padding:7rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.cta-l::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,146,47,.1),transparent 60%);pointer-events:none}
+.cta-l h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,2.8rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1.1rem;position:relative;z-index:1}
+.cta-l h2 em{font-style:italic;color:var(--gold-lt)}
+.cta-l p{font-size:.96rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.85;max-width:410px;position:relative;z-index:1}
+.cta-r{padding:7rem 4rem;background:rgba(255,255,255,.025);border-left:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;gap:.9rem}
+.cta-btn{display:flex;align-items:center;gap:.9rem;background:var(--gold);color:#fff;padding:1.05rem 1.6rem;border-radius:var(--rs);font-weight:600;font-size:.86rem;transition:all .28s;box-shadow:0 4px 18px rgba(200,146,47,.28)}
+.cta-btn:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,146,47,.35)}
+.cta-btn.outline{background:transparent;border:1.5px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6)}
+.cta-btn.outline:hover{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+.cta-btn-ico{width:36px;height:36px;background:rgba(255,255,255,.14);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cta-btn b{display:block;font-size:.88rem}
+.cta-btn span{font-size:.7rem;opacity:.65}
+.cta-note{font-size:.72rem;color:rgba(255,255,255,.28);text-align:center;margin-top:.2rem}
+.cta-note b{color:#34d399}
+
+/* ── FOOTER ── */
+footer{background:#060f1c;padding:4.5rem 5rem 2rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.fg-brand .logo{color:#fff}
+.fg-brand .logo-g{color:var(--gold)}
+.fg-tagline{font-size:.82rem;color:rgba(255,255,255,.3);line-height:1.78;margin-top:.9rem;font-weight:300}
+.fc-h{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:1.2rem}
+.fc-ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.fc-ul a{font-size:.79rem;color:rgba(255,255,255,.32);transition:color .2s}
+.fc-ul a:hover{color:var(--gold-lt)}
+.footer-bot{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+.topbar{padding:.5rem 1.5rem}.tb-r{display:none}
+header{padding:0 1.5rem}nav>a:not(.nav-cta){display:none}
+.hero{grid-template-columns:1fr}.hero-right{display:none}
+.hero-left{padding:4rem 1.5rem}
+section,.about-section,.stats-band,.promise-band,.cta-block{padding:4rem 1.5rem}
+.svc-header,.svc-grid{grid-template-columns:1fr}
+.svc-grid{grid-template-columns:1fr 1fr}
+.img-band{grid-template-columns:1fr;height:auto}
+.ib-cell{height:240px}
+.about-section{grid-template-columns:1fr}.about-img-col{display:none}
+.stats-grid{grid-template-columns:1fr 1fr}
+.st-box:nth-child(2){border-right:none}.st-box:nth-child(3){border-top:1px solid rgba(255,255,255,.07)}
+.why-grid{grid-template-columns:1fr}
+.proc-grid{grid-template-columns:1fr}
+.pg-step{border-right:none!important}.pg-step:nth-child(n+4){border-bottom:1px solid var(--border)!important}
+.dash-layout,.pb-inner,.cta-block,.faq-layout,.footer-grid{grid-template-columns:1fr}
+.faq-aside{position:static}
+.trust-strip{padding:1.5rem}
+footer{padding:3rem 1.5rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-l">Trusted by Automobile Dealers Across India — <b>Making Compliance Easy &amp; Payments Faster</b></div>
+  <div class="tb-r">
+    <a href="tel:+910000000000">📞 +91 00000 00000</a>
+    <a href="mailto:hello@dealerpay.in">✉ hello@dealerpay.in</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <a class="logo" href="#">Dealer<span class="logo-g">Pay</span><span class="logo-dot"></span><span style="font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:400;color:var(--muted)">in</span></a>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#why">Why Us</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-deco"><div class="hero-deco-circle hdc1"></div><div class="hero-deco-circle hdc2"></div></div>
+
+  <div class="hero-left">
+    <div class="hero-chip"><span class="live-dot"></span>Serving Automobile Dealers Across India</div>
+    <h1>Get Your Claims<br/>Processed.<br/><em>Get Paid Faster.</em></h1>
+    <p class="hero-sub">End-to-end FSC &amp; WSC dealer portal claim management, Aadhaar DigiSign, invoice processing, and GST compliance — one team, one goal: your money in your account, on time.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-fill">Free Consultation →</a>
+      <a href="#process" class="btn-ghost">See How It Works</a>
+    </div>
+    <div class="hero-trust">
+      <div class="ht-item"><div class="ht-val"><span class="cnt" data-t="95"><b>95</b></span>%</div><div class="ht-lbl">Target payment<br/>efficiency rate</div></div>
+      <div class="ht-item"><div class="ht-val">FSC<b>+</b>WSC</div><div class="ht-lbl">Full claim lifecycle<br/>managed for you</div></div>
+      <div class="ht-item"><div class="ht-val">48<b>hrs</b></div><div class="ht-lbl">To operational<br/>after onboarding</div></div>
+    </div>
+  </div>
+
+  <!-- HERO DASHBOARD PANEL -->
+  <div class="hero-right">
+    <div class="hero-right-grid"></div>
+    <div class="db-stack">
+
+      <!-- Card 1: Main KPI -->
+      <div class="dbc" style="animation:fadeUp .8s .35s ease both">
+        <div class="dbc-head">
+          <span class="dbc-label">April 2025 — Monthly Overview</span>
+          <span class="dbc-live"><span class="dbc-live-dot"></span>Live</span>
+        </div>
+        <div class="dbc-main">
+          <div>
+            <div class="dbc-amount"><sup>₹</sup>14,82,350</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.35);margin-top:.3rem;letter-spacing:.04em;text-transform:uppercase">Total Invoice Value — This Month</div>
+          </div>
+          <div class="dbc-main-meta">
+            <div class="dbc-badge badge-green">↑ 8.4% vs Mar</div>
+            <div class="dbc-period">Mar 2025: ₹13,67,000</div>
+          </div>
+        </div>
+        <div class="dbc-minis">
+          <div class="dbm"><div class="dbm-lbl">Paid Out</div><div class="dbm-val c-green">₹13.6L</div></div>
+          <div class="dbm"><div class="dbm-lbl">Pending</div><div class="dbm-val c-amber">₹1.1L</div></div>
+          <div class="dbm"><div class="dbm-lbl">On Hold</div><div class="dbm-val c-red">₹0.2L</div></div>
+        </div>
+        <div class="dbc-ring-row">
+          <div class="ring-wrap">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="9"/>
+              <circle cx="38" cy="38" r="30" fill="none" stroke="#34d399" stroke-width="9" stroke-linecap="round" class="ring-arc" style="--d:171"/>
+            </svg>
+            <div class="ring-center"><div class="ring-pct">91.7%</div><div class="ring-lbl">Paid</div></div>
+          </div>
+          <div class="ring-legend">
+            <div class="rl-item"><span class="rl-dot" style="background:#34d399"></span>Paid — ₹13,60,000</div>
+            <div class="rl-item"><span class="rl-dot" style="background:#fbbf24"></span>Pending — ₹1,10,000</div>
+            <div class="rl-item"><span class="rl-dot" style="background:#f87171"></span>On Hold — ₹12,350</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Trend + Claims -->
+      <div class="dbc" style="animation:fadeUp .8s .5s ease both">
+        <div class="dbc2-head">
+          <span class="dbc-label">6-Month Payment Trend</span>
+          <span style="font-size:.62rem;color:var(--gold-lt);font-weight:600">₹ Lakhs</span>
+        </div>
+        <div class="spark-bars">
+          <div class="sb-col"><div class="sb-bar" style="height:30px;background:rgba(200,146,47,.38);animation-delay:.3s"></div><span class="sb-mo">Nov</span></div>
+          <div class="sb-col"><div class="sb-bar" style="height:38px;background:rgba(200,146,47,.5);animation-delay:.38s"></div><span class="sb-mo">Dec</span></div>
+          <div class="sb-col"><div class="sb-bar" style="height:24px;background:rgba(200,146,47,.38);animation-delay:.46s"></div><span class="sb-mo">Jan</span></div>
+          <div class="sb-col"><div class="sb-bar" style="height:42px;background:rgba(200,146,47,.55);animation-delay:.54s"></div><span class="sb-mo">Feb</span></div>
+          <div class="sb-col"><div class="sb-bar" style="height:36px;background:rgba(200,146,47,.5);animation-delay:.62s"></div><span class="sb-mo">Mar</span></div>
+          <div class="sb-col"><div class="sb-bar" style="height:46px;background:var(--gold-lt);animation-delay:.7s"></div><span class="sb-mo" style="color:var(--gold-lt);font-weight:600">Apr</span></div>
+        </div>
+        <div class="claim-rows">
+          <div class="cr-header"><span class="cr-th">Invoice</span><span class="cr-th">Type</span><span class="cr-th">Value</span><span class="cr-th">Status</span></div>
+          <div class="cr-row"><span class="cr-id">INV-2025-0418</span><span class="cr-type">FSC</span><span class="cr-amt">₹24,800</span><span class="cr-tag t-g">Paid</span></div>
+          <div class="cr-row"><span class="cr-id">INV-2025-0416</span><span class="cr-type">WSC</span><span class="cr-amt">₹52,400</span><span class="cr-tag t-g">Validated</span></div>
+          <div class="cr-row"><span class="cr-id">INV-2025-0415</span><span class="cr-type">FSC</span><span class="cr-amt">₹18,200</span><span class="cr-tag t-a">Submitted</span></div>
+          <div class="cr-row"><span class="cr-id">INV-2025-0413</span><span class="cr-type">WSC</span><span class="cr-amt">₹38,600</span><span class="cr-tag t-b">Processing</span></div>
+        </div>
+        <div class="dbc-eff-bar">
+          <div class="dbc-eff-row"><span class="dbc-eff-lbl">Payment Efficiency — Apr 2025</span><span class="dbc-eff-val">91.7%</span></div>
+          <div class="eff-track"><div class="eff-fill" style="width:91.7%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="ts-inner">
+    <span class="ts-lbl">Services we cover</span>
+    <div class="ts-pills">
+      <span class="ts-pill">✓ FSC Claims</span>
+      <span class="ts-pill">✓ WSC Claims</span>
+      <span class="ts-pill">✓ DigiSign / Aadhaar OTP</span>
+      <span class="ts-pill">✓ GST Filing</span>
+      <span class="ts-pill">✓ TDS &amp; Income Tax</span>
+      <span class="ts-pill">✓ Payroll Compliance</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="svc-section" id="services">
+  <div class="svc-header">
+    <div><div class="s-tag">What We Do</div><h2 class="s-h2">Built for Automobile<br/><em>Dealers. End to End.</em></h2></div>
+    <div class="svc-header-r"><p>Unlike firms that only handle tax returns, DealerPay operates inside your dealer portal and financial compliance framework. One partner covering everything — from portal login to payment confirmation.</p></div>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-num">01</div><div class="svc-icon-box">🏪</div>
+      <div class="svc-title">FSC Claim Processing</div>
+      <p class="svc-desc">Complete Free Service Coupon lifecycle — portal login, claim consolidation, DigiSign, invoice download and status tracking.</p>
+      <ul class="svc-ul"><li>Consolidation &amp; New→Submitted status change</li><li>Aadhaar OTP / DigiSign via Protean eGov</li><li>Invoice download &amp; audit-ready archiving</li><li>Deadline monitoring — no missed windows</li></ul>
+      <a href="#process" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d1">
+      <div class="svc-num">02</div><div class="svc-icon-box">🔧</div>
+      <div class="svc-title">WSC Claim Management</div>
+      <p class="svc-desc">Warranty Service Coupon management with docket documentation, courier dispatch entry, and claim validation tracking.</p>
+      <ul class="svc-ul"><li>Docket slip upload &amp; courier name/date entry</li><li>DigiSign &amp; signed invoice processing</li><li>Submitted→Validated pipeline tracking</li><li>Short-payment investigation &amp; dispute filing</li></ul>
+      <a href="#process" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-num">03</div><div class="svc-icon-box">📋</div>
+      <div class="svc-title">GST Registration &amp; Filing</div>
+      <p class="svc-desc">Complete GST lifecycle — registration, GSTR-1/3B/9 filing, ITC reconciliation, and notice handling.</p>
+      <ul class="svc-ul"><li>GSTIN registration &amp; amendments</li><li>GSTR-1, GSTR-3B, GSTR-9 &amp; GSTR-9C</li><li>Input Tax Credit (ITC) reconciliation</li><li>GST notice &amp; scrutiny response</li></ul>
+      <a href="#contact" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-num">04</div><div class="svc-icon-box">🧾</div>
+      <div class="svc-title">Income Tax &amp; TDS</div>
+      <p class="svc-desc">ITR filing, TDS tracking, quarterly returns, and Form 16/16A generation for dealership entities.</p>
+      <ul class="svc-ul"><li>ITR filing for proprietors &amp; companies</li><li>TDS deduction, deposit &amp; challan management</li><li>Quarterly TDS returns (24Q / 26Q)</li><li>Form 16 &amp; 16A for all deductees</li></ul>
+      <a href="#contact" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-num">05</div><div class="svc-icon-box">📒</div>
+      <div class="svc-title">Accounting &amp; Bookkeeping</div>
+      <p class="svc-desc">Day-to-day bookkeeping in Tally, bank reconciliation, and monthly P&amp;L — clear financial visibility always.</p>
+      <ul class="svc-ul"><li>Daily transaction recording in Tally</li><li>Bank &amp; cash book reconciliation</li><li>Monthly P&amp;L statement &amp; balance sheet</li><li>Accounts payable &amp; receivable management</li></ul>
+      <a href="#contact" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d1">
+      <div class="svc-num">06</div><div class="svc-icon-box">👥</div>
+      <div class="svc-title">Payroll &amp; Statutory Compliance</div>
+      <p class="svc-desc">Complete payroll for your dealership staff — PF/ESI, payslips, and all statutory filings handled.</p>
+      <ul class="svc-ul"><li>Monthly payroll processing &amp; payslips</li><li>PF, ESI &amp; Professional Tax management</li><li>Form 16 generation for employees</li><li>Full labour law &amp; statutory compliance</li></ul>
+      <a href="#contact" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-num">07</div><div class="svc-icon-box">📈</div>
+      <div class="svc-title">Real-Time Payment Dashboard</div>
+      <p class="svc-desc">Always-updated dashboard — invoice values, payments received, claim stage, and efficiency rate. Any device.</p>
+      <ul class="svc-ul"><li>Live FSC &amp; WSC claim status by stage</li><li>Month-wise payment tracking &amp; trends</li><li>Pending &amp; on-hold claim alerts</li><li>Payment efficiency % with target tracking</li></ul>
+      <a href="#dashboard" class="svc-more">Learn More →</a>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-num">08</div><div class="svc-icon-box">💬</div>
+      <div class="svc-title">Dedicated Account Support</div>
+      <p class="svc-desc">One manager for your dealership — WhatsApp, phone or email. No queues, no call centers.</p>
+      <ul class="svc-ul"><li>Dedicated WhatsApp contact per dealer</li><li>Proactive status alerts &amp; weekly reports</li><li>Secure document collection &amp; filing</li><li>6 days a week availability</li></ul>
+      <a href="#contact" class="svc-more">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ IMAGE BAND ═══ -->
+<div class="img-band">
+  <div class="ib-cell">
+    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80&auto=format&fit=crop" alt="Dealer portal operations" class="ib-img" loading="lazy"/>
+    <div class="ib-overlay"></div>
+    <div class="ib-content">
+      <div class="ib-tag">Portal Operations</div>
+      <div class="ib-title">We Work Inside Your Dealer Portal</div>
+      <div class="ib-desc">Log in, process claims, handle DigiSign, upload every document — you never need to touch the portal yourself.</div>
+    </div>
+  </div>
+  <div class="ib-cell">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80&auto=format&fit=crop" alt="GST compliance" class="ib-img" loading="lazy"/>
+    <div class="ib-overlay"></div>
+    <div class="ib-content">
+      <div class="ib-tag">GST &amp; Compliance</div>
+      <div class="ib-title">Zero Penalties. Full Compliance.</div>
+      <div class="ib-desc">GSTR filings, TDS returns, income tax — your dealership stays perfectly compliant every month.</div>
+    </div>
+  </div>
+  <div class="ib-cell">
+    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format&fit=crop" alt="WhatsApp support" class="ib-img" loading="lazy"/>
+    <div class="ib-overlay"></div>
+    <div class="ib-content">
+      <div class="ib-tag">Client Support</div>
+      <div class="ib-title">Just Send "Hi" on WhatsApp</div>
+      <div class="ib-desc">Your dedicated manager responds in under 2 hours — no ticketing, no waiting, just expert help.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT / HOW WE WORK ═══ -->
+<section class="about-section" id="process">
+  <div class="about-img-col reveal-l">
+    <div class="about-img-frame">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop" alt="Professional dealer claims expert" loading="lazy"/>
+      <div class="about-img-shade"></div>
+      <div class="about-badge">
+        <div class="ab-icon">✅</div>
+        <div><div class="ab-lbl">Claims Processed</div><div class="ab-val">500+</div></div>
+      </div>
+    </div>
+    <div class="about-float">
+      <div class="af-icon">💰</div>
+      <div class="af-val">₹2<b>Cr+</b></div>
+      <div class="af-lbl">Recovered for Dealers</div>
+    </div>
+  </div>
+  <div class="about-content reveal-r">
+    <div class="s-tag">How We Work</div>
+    <h2 class="s-h2">Every Step<br/><em>Precisely Managed.</em></h2>
+    <p class="s-lead" style="margin-bottom:0">We know automobile dealer portal workflows inside-out — from Aadhaar OTP signing to courier docket uploads. Every claim tracked until payment is confirmed.</p>
+    <div class="about-steps">
+      <div class="as-item"><div class="as-num">01</div><div><div class="as-title">Portal Login &amp; Claim Identification</div><div class="as-desc">All FSC &amp; WSC claims with "New" status identified before deadlines — no eligible claim ever missed.</div></div></div>
+      <div class="as-item"><div class="as-num">02</div><div><div class="as-title">DigiSign &amp; Aadhaar OTP Verification</div><div class="as-desc">Every invoice signed via Protean eGov Technologies — Aadhaar OTP verified, legally compliant, ready for download.</div></div></div>
+      <div class="as-item"><div class="as-num">03</div><div><div class="as-title">Docket Upload &amp; Full Documentation</div><div class="as-desc">For WSC: courier name, dispatch date, docket slip uploaded. Complete audit trail stored and accessible any time.</div></div></div>
+      <div class="as-item"><div class="as-num">04</div><div><div class="as-title">Validation &amp; Payment Confirmation</div><div class="as-desc">Claims tracked New→Submitted→Validated. We follow up until payment lands and reconcile every rupee.</div></div></div>
+    </div>
+    <a href="#contact" class="btn-fill">Schedule a Free Call</a>
+  </div>
+</section>
+
+<!-- ═══ STATS BAND ═══ -->
+<section class="stats-band">
+  <div class="stats-grid">
+    <div class="st-box reveal"><span class="st-icon">📋</span><div class="st-num"><span class="cnt" data-t="500">0</span><b>+</b></div><div class="st-lbl">Claims Processed</div></div>
+    <div class="st-box reveal d1"><span class="st-icon">🎯</span><div class="st-num"><span class="cnt" data-t="95">0</span><b>%</b></div><div class="st-lbl">Target Payment Efficiency</div></div>
+    <div class="st-box reveal d2"><span class="st-icon">🏪</span><div class="st-num"><span class="cnt" data-t="50">0</span><b>+</b></div><div class="st-lbl">Dealerships Served</div></div>
+    <div class="st-box reveal d3"><span class="st-icon">💰</span><div class="st-num">₹<span class="cnt" data-t="2">0</span><b>Cr+</b></div><div class="st-lbl">Payments Recovered</div></div>
+  </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section class="why-section" id="why">
+  <div class="s-tag">Why DealerPay</div>
+  <h2 class="s-h2">We Do What <em>Others Won't</em></h2>
+  <p class="s-lead">Most accounting firms stop at tax returns. We go into the portal itself — ensuring every claim is correctly processed and every payment arrives, every time.</p>
+  <div class="why-grid">
+    <div class="wc reveal"><div class="wc-icon">🎯</div><div><div class="wc-title">Payment-Focused Approach</div><div class="wc-text">Our success is measured by your payment efficiency rate. Every action we take is aimed at getting your money into your account faster — not just filing paperwork.</div></div></div>
+    <div class="wc reveal d1"><div class="wc-icon">🔐</div><div><div class="wc-title">Full Compliance, Zero Risk</div><div class="wc-text">Aadhaar DigiSign, GST filings, TDS — all managed in full compliance with Indian regulations. No penalties, no notices, no surprises at year-end.</div></div></div>
+    <div class="wc reveal d2"><div class="wc-icon">📊</div><div><div class="wc-title">Real-Time Transparency</div><div class="wc-text">Your live dashboard shows every invoice, claim status, and payment updated in real time. No chasing updates — clear accurate data, always.</div></div></div>
+    <div class="wc reveal d3"><div class="wc-icon">💬</div><div><div class="wc-title">Simplest Onboarding in India</div><div class="wc-text">Send "Hi" on WhatsApp. That's it. No lengthy contracts, no complex forms. Operational within 48 hours — dedicated manager from message one.</div></div></div>
+  </div>
+  <div class="compare-wrap reveal">
+    <table class="ct">
+      <thead><tr><th>Capability</th><th class="hl">DealerPay.in</th><th>Typical CA Firm</th></tr></thead>
+      <tbody>
+        <tr><td>Dealer Portal Operations (FSC/WSC)</td><td class="hl ty">✔ Expert</td><td class="tn">✘ Not offered</td></tr>
+        <tr><td>DigiSign / Aadhaar OTP Workflow</td><td class="hl ty">✔ Managed</td><td class="tn">✘ No</td></tr>
+        <tr><td>Courier Docket Upload &amp; Tracking</td><td class="hl ty">✔ Handled</td><td class="tn">✘ No</td></tr>
+        <tr><td>GST Registration &amp; Return Filing</td><td class="hl ty">✔ Yes</td><td class="ty">✔ Yes</td></tr>
+        <tr><td>Real-Time Payment Dashboard</td><td class="hl ty">✔ Included</td><td class="tn">✘ No</td></tr>
+        <tr><td>WhatsApp-First Client Support</td><td class="hl ty">✔ Yes</td><td class="tn">✘ No</td></tr>
+        <tr><td>Income Tax &amp; TDS Compliance</td><td class="hl ty">✔ Yes</td><td class="ty">✔ Yes</td></tr>
+        <tr><td>Payroll &amp; Statutory Management</td><td class="hl ty">✔ Yes</td><td class="tn">✘ Rarely</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ PROCESS GRID ═══ -->
+<section class="process-section">
+  <div class="s-tag">Step by Step</div>
+  <h2 class="s-h2">From Portal to <em>Payment</em> —<br/>Every Step Owned</h2>
+  <p class="s-lead">A rigorous 6-step process designed around the exact workflows of the dealer portal — nothing left to chance.</p>
+  <div class="proc-grid">
+    <div class="pg-step reveal"><div class="pg-num">01</div><div class="pg-icon">🔐</div><div class="pg-title">Portal Login &amp; Identification</div><div class="pg-desc">Secure portal access, all "New" status claims identified before submission windows close.</div></div>
+    <div class="pg-step reveal d1"><div class="pg-num">02</div><div class="pg-icon">📋</div><div class="pg-title">Claim Consolidation &amp; Submission</div><div class="pg-desc">Claims consolidated, status changed New→Submitted. Accuracy checked before every irreversible action.</div></div>
+    <div class="pg-step reveal d2"><div class="pg-num">03</div><div class="pg-icon">✍️</div><div class="pg-title">Aadhaar Digital Signature</div><div class="pg-desc">Every invoice signed via DigiSign (Protean eGov). Aadhaar OTP verified — legally valid and fully compliant.</div></div>
+    <div class="pg-step reveal d3"><div class="pg-num">04</div><div class="pg-icon">📥</div><div class="pg-title">Invoice Download &amp; Documentation</div><div class="pg-desc">Post-signature invoices downloaded, organised, and archived — complete audit-ready documentation.</div></div>
+    <div class="pg-step reveal d4"><div class="pg-num">05</div><div class="pg-icon">📦</div><div class="pg-title">Docket &amp; Courier Upload</div><div class="pg-desc">WSC: courier name, dispatch date entered, docket slip uploaded and saved. Portal record complete.</div></div>
+    <div class="pg-step reveal"><div class="pg-num">06</div><div class="pg-icon">✅</div><div class="pg-title">Validation &amp; Payment Tracking</div><div class="pg-desc">Claims moved to Validated. Tracked until payment confirmed and reconciled against every invoice.</div></div>
+  </div>
+</section>
+
+<!-- ═══ DASHBOARD SECTION ═══ -->
+<section class="dash-section" id="dashboard">
+  <div class="s-tag">Live Dashboard</div>
+  <h2 class="s-h2">Your Claims Pipeline,<br/><em>Always Visible</em></h2>
+  <p class="s-lead">Complete transparency into every claim we manage. Updated in real time, accessible on any device, summarised for you every week on WhatsApp.</p>
+  <div class="dash-layout">
+    <div class="dash-feats">
+      <div class="df-row reveal"><div class="df-icon">💰</div><div><div class="df-title">Invoice Value Tracking</div><div class="df-text">Total invoiced value by FSC/WSC type and month — always know what's in the pipeline.</div></div></div>
+      <div class="df-row reveal d1"><div class="df-icon">📅</div><div><div class="df-title">Month-wise Payments Received</div><div class="df-text">Every payment tracked against submitted claims, with month-on-month trends for planning.</div></div></div>
+      <div class="df-row reveal d2"><div class="df-icon">⏳</div><div><div class="df-title">Pending &amp; On-Hold Alerts</div><div class="df-text">See instantly which claims need action and the exact step required to clear them.</div></div></div>
+      <div class="df-row reveal d3"><div class="df-icon">🎯</div><div><div class="df-title">Payment Efficiency Rate</div><div class="df-text">Live % with a 95% target line. Every point below target is flagged and actioned immediately.</div></div></div>
+      <div class="df-row reveal d4"><div class="df-icon">📁</div><div><div class="df-title">Full Audit Trail &amp; Document Access</div><div class="df-text">All signed invoices, docket slips, and submissions stored — download any document instantly.</div></div></div>
+    </div>
+    <div class="dash-mock reveal">
+      <div class="dm-topbar"><div class="dm-dot" style="background:#ff5f57"></div><div class="dm-dot" style="background:#febc2e"></div><div class="dm-dot" style="background:#28c840"></div><span class="dm-title">dealerpay.in — Claims Dashboard</span></div>
+      <div class="dm-body">
+        <div class="dm-kpis">
+          <div class="dm-kpi k1"><div class="dm-kpi-lbl">Total Invoiced</div><div class="dm-kpi-val g">₹14.8L</div></div>
+          <div class="dm-kpi k2"><div class="dm-kpi-lbl">Paid Out</div><div class="dm-kpi-val gr">₹13.6L</div></div>
+          <div class="dm-kpi k3"><div class="dm-kpi-lbl">Efficiency</div><div class="dm-kpi-val">91.7%</div></div>
+        </div>
+        <div class="dm-chart-lbl">6-Month Payment Trend (₹ Lakhs)</div>
+        <div class="dm-bars">
+          <div class="dm-bc"><div class="dm-bf" style="height:26px;background:#e4b84e;animation-delay:.2s"></div><span class="dm-mo">Nov</span></div>
+          <div class="dm-bc"><div class="dm-bf" style="height:34px;background:#d4a83e;animation-delay:.28s"></div><span class="dm-mo">Dec</span></div>
+          <div class="dm-bc"><div class="dm-bf" style="height:20px;background:#e4b84e;animation-delay:.36s"></div><span class="dm-mo">Jan</span></div>
+          <div class="dm-bc"><div class="dm-bf" style="height:40px;background:#d4a83e;animation-delay:.44s"></div><span class="dm-mo">Feb</span></div>
+          <div class="dm-bc"><div class="dm-bf" style="height:32px;background:#e4b84e;animation-delay:.52s"></div><span class="dm-mo">Mar</span></div>
+          <div class="dm-bc"><div class="dm-bf" style="height:52px;background:var(--gold);animation-delay:.6s"></div><span class="dm-mo" style="color:var(--gold);font-weight:600">Apr</span></div>
+        </div>
+        <table class="dm-table">
+          <thead><tr><th>Invoice</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>INV-2025-0418</td><td>FSC</td><td>₹24,800</td><td><span class="dt dt-g">Paid</span></td></tr>
+            <tr><td>INV-2025-0416</td><td>WSC</td><td>₹52,400</td><td><span class="dt dt-g">Validated</span></td></tr>
+            <tr><td>INV-2025-0415</td><td>FSC</td><td>₹18,200</td><td><span class="dt dt-a">Submitted</span></td></tr>
+            <tr><td>INV-2025-0413</td><td>WSC</td><td>₹38,600</td><td><span class="dt dt-b">Processing</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROMISE BAND ═══ -->
+<section class="promise-band">
+  <div class="pb-mesh"></div>
+  <div class="pb-inner">
+    <div class="pb-l reveal-l">
+      <h2>Making Compliance Easy and Payments <em>Faster</em></h2>
+      <p>Financial compliance and claim management should be simple, transparent, and efficient. Our team works every day to ensure invoices are processed correctly and payments arrive without unnecessary delays.</p>
+      <a href="#contact" class="btn-white">Schedule a Free Consultation →</a>
+    </div>
+    <div class="pb-r reveal-r">
+      <div class="pb-pt"><div class="pb-icon">🏆</div><div><div class="pb-title">Proven Results Across India</div><div class="pb-text">Dealers achieve faster claim clearance and higher payment efficiency under our management, consistently.</div></div></div>
+      <div class="pb-pt"><div class="pb-icon">🔄</div><div><div class="pb-title">Continuous Monitoring</div><div class="pb-text">We don't file and forget. Every claim is actively monitored through the entire pipeline until payment is confirmed.</div></div></div>
+      <div class="pb-pt"><div class="pb-icon">📱</div><div><div class="pb-title">Always Reachable on WhatsApp</div><div class="pb-text">Your dedicated manager is available 6 days a week. Real responses, real accountability — under 2 hours.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq-section" id="faq">
+  <div class="faq-layout">
+    <div class="faq-aside reveal-l">
+      <div class="s-tag">FAQ</div>
+      <h2 class="s-h2">Questions<br/><em>We Hear Often</em></h2>
+      <p style="font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:1.5rem">Browse by topic. Can't find your answer? WhatsApp us — under 2 hours.</p>
+      <div class="faq-cats">
+        <div class="fc active" onclick="switchFaq('dealer',this)">🏪 Dealer Portal &amp; Claims</div>
+        <div class="fc" onclick="switchFaq('gst',this)">📋 GST &amp; Tax Compliance</div>
+        <div class="fc" onclick="switchFaq('payment',this)">💰 Payments &amp; Dashboard</div>
+        <div class="fc" onclick="switchFaq('start',this)">🚀 Getting Started</div>
+        <div class="fc" onclick="switchFaq('general',this)">💬 General</div>
+      </div>
+    </div>
+    <div class="faq-pane reveal">
+      <!-- DEALER -->
+      <div class="fg active" id="fg-dealer">
+        <div class="fg-title">Dealer Portal &amp; Claims</div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What exactly is an FSC claim and why does it need to be submitted on the portal?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">A <strong>Free Service Coupon (FSC)</strong> claim is raised by an authorised automobile dealer to recover the cost of free services performed on new vehicles during the manufacturer's warranty period. These scheduled services are done at no charge to the customer, but the dealer is reimbursed by the manufacturer. The claim must be submitted through the official dealer portal within a specified window. Missing this window means the dealer absorbs the full service cost — a direct, avoidable revenue loss.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What is a WSC claim and how is it different from FSC?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">A <strong>Warranty Service Coupon (WSC)</strong> claim covers repairs and part replacements done during the vehicle's active warranty period — beyond just scheduled free services. WSC claims involve higher invoice values and require additional documentation: courier docket slips as physical proof of claim dispatch. After digital signing, you must enter courier dispatch details and upload the docket slip before the claim moves to "Validated" status.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What happens if a claim is not submitted before the portal deadline?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Once the submission window closes, claims with "New" status cannot be converted to "Submitted" — they are forfeited. The dealer absorbs the full service cost with no manufacturer reimbursement. This is one of the most common and costly mistakes at dealerships. DealerPay proactively monitors your portal and submits all eligible claims well before the deadline.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What is DigiSign and why is it required for every invoice?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in"><strong>DigiSign</strong> is a government-compliant digital signature process powered by Protean eGov Technologies (formerly NSDL). It uses Aadhaar-based OTP authentication to electronically sign invoices, making them legally valid for claim submission. Every FSC and WSC invoice must be digitally signed before it can be downloaded and processed. DealerPay coordinates this entire workflow so no invoice is ever left unsigned.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">Can a claim be reversed or edited after it is submitted?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">No. Once a claim status is changed from "New" to "Submitted" on the dealer portal, <strong>it cannot be undone or reversed</strong>. This is why accuracy before submission is critical. DealerPay reviews each claim's details and documentation before initiating any status change, ensuring errors are caught before an irreversible action.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What documents do you need from us to manage our claims?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">To get started, we need: <ul><li>Dealer portal login credentials (User ID &amp; password)</li><li>Aadhaar number linked to registered mobile for DigiSign OTP</li><li>Courier partner details for WSC docket submissions</li><li>GST portal access (for compliance services)</li></ul>All credentials are stored securely and used only for processing your claims.</div></div></div>
+      </div>
+      <!-- GST -->
+      <div class="fg" id="fg-gst">
+        <div class="fg-title">GST &amp; Tax Compliance</div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">Does my dealership need a separate GST registration for service and parts income?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">In most cases, a single GSTIN covers all revenue streams — vehicle sales, service labour, spare parts, and accessories — as long as they operate from the same state and legal entity. If your dealership operates in multiple states or under different entities, each requires its own registration. DealerPay assesses your structure and advises on the optimal setup.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How are FSC/WSC reimbursements treated under GST?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">FSC and WSC reimbursements are <strong>taxable supplies</strong> under GST. The dealer raises a tax invoice to the manufacturer for services rendered, and GST is applicable. This must be declared in GSTR-1 and paid in GSTR-3B. Failure to correctly report creates GST mismatches and can attract notices. DealerPay ensures all FSC/WSC invoices are correctly accounted for in your returns.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What GST returns does my dealership need to file every month?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">A typical automobile dealership files: <ul><li><strong>GSTR-1</strong> — outward supply details (monthly or quarterly)</li><li><strong>GSTR-3B</strong> — summary return with tax payment (monthly)</li><li><strong>GSTR-9</strong> — annual reconciliation return</li><li><strong>GSTR-9C</strong> — if turnover exceeds ₹5 crore</li></ul>DealerPay handles all filings, with timely submissions to avoid late fees.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">We received a GST notice. Can DealerPay help?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Yes. GST notices are typically issued for GSTR-1 vs GSTR-3B mismatches, ITC reversals, or non-filing penalties. DealerPay analyses the notice, prepares a detailed response, and files it within the prescribed time. We also conduct a root-cause review to prevent recurrence. Ignoring GST notices can escalate to demand orders.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How is TDS handled for vendor payments at the dealership?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Dealerships make payments attracting TDS — rent (194I), contractor payments (194C), professional fees (194J), and others. DealerPay tracks each category, deducts TDS at the applicable rate, deposits it by the 7th of the following month, and files quarterly TDS returns (24Q/26Q). Form 16/16A are generated for all deductees.</div></div></div>
+      </div>
+      <!-- PAYMENT -->
+      <div class="fg" id="fg-payment">
+        <div class="fg-title">Payments &amp; Dashboard</div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How long does it take for a claim to be paid after submission?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Payment timelines vary by manufacturer and claim type: <ul><li><strong>FSC claims</strong> — 15 to 30 days after validation</li><li><strong>WSC claims</strong> — 20 to 45 days after docket validation</li></ul>Delays occur when claims are stuck at "Submitted" due to missing dockets or unsigned invoices. DealerPay monitors each stage and escalates if payment is delayed beyond the expected window.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What does "payment efficiency rate" mean and what is a good target?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in"><strong>Payment efficiency rate</strong> is the percentage of your total submitted invoice value successfully paid within the billing cycle. If you submitted ₹10L and received ₹9.5L, your efficiency is 95%. A rate below 85% typically signals issues with documentation, missed windows, or unsigned invoices. DealerPay targets 95%+ for every dealer, tracked live on your dashboard.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How do I access my DealerPay dashboard?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Once you onboard, you receive a personal dashboard link accessible from any browser — no app required. The dashboard updates in real time as claims are processed. Your dedicated manager also sends a weekly WhatsApp summary so you're always informed without needing to log in.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">A payment was received but the amount is less than expected. What should I do?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Short payments can occur due to partial claim approval, deductions for parts under warranty policy, or GST adjustments. DealerPay reconciles every payment against submitted invoices and flags discrepancies immediately. We investigate via the portal's deduction details and file a correction claim or raise a dispute on your behalf.</div></div></div>
+      </div>
+      <!-- ONBOARDING -->
+      <div class="fg" id="fg-start">
+        <div class="fg-title">Getting Started</div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How quickly can DealerPay start managing my claims?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Typically within <strong>24 to 48 hours</strong> of credential sharing and onboarding completion. We begin by auditing your portal — checking pending claims, upcoming deadlines, and historical backlog. Within the first week, you'll have a clear picture of your claims health and a baseline payment efficiency rate.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">We already have a CA for taxes. Can DealerPay just handle the dealer portal work?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Absolutely. DealerPay's services are modular. You can engage us <strong>exclusively for dealer portal claim management</strong> while retaining your existing CA for tax. Many clients use us this way. If you later want to consolidate everything, we can extend to GST and accounting at your pace.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How is DealerPay priced?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">We offer transparent, outcome-based pricing. Dealer portal management is typically a <strong>monthly retainer</strong> based on claim volume. GST and compliance services are priced per service type. No long-term lock-in — monthly or quarterly agreements. Contact us for a custom quote based on your dealership's size.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">Do I need to share my Aadhaar number with DealerPay?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">The Aadhaar-based DigiSign process requires your Aadhaar or VID number to initiate OTP. The OTP is sent to <strong>your own registered mobile number</strong> and shared only at the moment of signing. We do not store your Aadhaar after the session. Some dealers prefer to handle the OTP step themselves while we prepare invoices — we support both workflows.</div></div></div>
+      </div>
+      <!-- GENERAL -->
+      <div class="fg" id="fg-general">
+        <div class="fg-title">General</div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">Which automobile brands and portals does DealerPay work with?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">DealerPay currently specialises in <strong>Honda Two-Wheelers dealer portals</strong> (Hirise Honda) and is expanding to cover other two-wheeler and four-wheeler OEM portals. Contact us to confirm support for your specific brand before onboarding.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">Is my dealership data and portal access kept confidential?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">Yes. All credentials, financial data, and business information are: <ul><li>Stored in encrypted, access-controlled systems</li><li>Accessible only to the team member assigned to your account</li><li>Never shared with third parties under any circumstances</li><li>Covered under an NDA signed at onboarding</li></ul></div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">What if I want to stop using DealerPay's services?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">You can exit at any time with a 30-day notice. Upon exit, we provide a full handover: status summary of pending claims, all downloaded invoices and docket records, and a reconciliation report. Your data and records belong entirely to you.</div></div></div>
+        <div class="fi"><div class="fi-q" onclick="toggleFi(this)"><span class="fi-q-text">How do I get in touch right now?</span><span class="fi-chevron">▼</span></div><div class="fi-a"><div class="fi-a-in">The fastest way is WhatsApp — send <strong>"Hi"</strong> and a team member responds within 2 hours. You can also email <strong>hello@dealerpay.in</strong> or call directly. No bots, no ticketing — you speak to a real person who understands dealer portals and compliance from the very first message.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-block" id="contact">
+  <div class="cta-l">
+    <h2>Ready to Get Your<br/>Claims <em>Settled Faster?</em></h2>
+    <p>Join automobile dealers across India who trust DealerPay.in to manage their portal claims, GST filings, and payment tracking. One message is all it takes to get started.</p>
+  </div>
+  <div class="cta-r">
+    <a href="tel:+910000000000" class="cta-btn"><div class="cta-btn-ico">📞</div><div><b>Call Us Now</b><span>Talk to an expert today</span></div></a>
+    <a href="mailto:hello@dealerpay.in" class="cta-btn"><div class="cta-btn-ico">✉</div><div><b>Email Us</b><span>hello@dealerpay.in</span></div></a>
+    <a href="#" class="cta-btn outline"><div class="cta-btn-ico">💬</div><div><b>WhatsApp Us</b><span>Send "Hi" to get started instantly</span></div></a>
+    <div class="cta-note">Average response time: <b>under 2 hours</b></div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="fg-brand">
+      <a class="logo" href="#"><span>Dealer</span><span class="logo-g">Pay</span><span class="logo-dot"></span><span style="font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:400;color:rgba(255,255,255,.3)">in</span></a>
+      <p class="fg-tagline">End-to-end dealer portal claim management and GST compliance for automobile dealerships across India. Making compliance easy and payments faster.</p>
+    </div>
+    <div><div class="fc-h">Services</div><ul class="fc-ul"><li><a href="#services">FSC Claim Processing</a></li><li><a href="#services">WSC Claim Management</a></li><li><a href="#services">GST Registration &amp; Filing</a></li><li><a href="#services">Income Tax &amp; TDS</a></li><li><a href="#services">Accounting &amp; Bookkeeping</a></li><li><a href="#services">Payroll Compliance</a></li></ul></div>
+    <div><div class="fc-h">Company</div><ul class="fc-ul"><li><a href="#process">How We Work</a></li><li><a href="#dashboard">Live Dashboard</a></li><li><a href="#why">Why DealerPay</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact Us</a></li></ul></div>
+    <div><div class="fc-h">Contact</div><ul class="fc-ul"><li><a href="https://dealerpay.in">www.dealerpay.in</a></li><li><a href="mailto:hello@dealerpay.in">hello@dealerpay.in</a></li><li><a href="#">📞 +91 00000 00000</a></li><li><a href="#">💬 WhatsApp: Send "Hi"</a></li><li><a href="#">📍 Serving All India</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-copy">© 2025 DealerPay.in — Making Compliance Easy and Payments Faster</div>
+    <div class="footer-copy">Automobile Dealer Claims &amp; GST Compliance Experts, India</div>
+  </div>
+</footer>
+
+<script>
+// Header scroll
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('up',scrollY>20),{passive:true});
+
+// Scroll reveal
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.07});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>ro.observe(el));
+
+// Animated counters
+const co=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  const el=e.target,t=+el.dataset.t,dur=1800,step=t/dur*16;let c=0;
+  const tm=setInterval(()=>{c=Math.min(c+step,t);el.textContent=Math.floor(c);if(c>=t)clearInterval(tm)},16);
+  co.unobserve(el);
+}})},{threshold:.5});
+document.querySelectorAll('.cnt').forEach(c=>co.observe(c));
+
+// FAQ
+function toggleFi(el){
+  const fi=el.parentElement,open=fi.classList.contains('open');
+  fi.closest('.fg').querySelectorAll('.fi.open').forEach(i=>i.classList.remove('open'));
+  if(!open)fi.classList.add('open');
+}
+function switchFaq(cat,btn){
+  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.fg').forEach(g=>g.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fg-'+cat).classList.add('active');
+}
+</script>
+</body>
+</html>
