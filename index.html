@@ -3884,6 +3884,17 @@
     moveTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     window.addEventListener('scroll', updateMoveTopVisibility, { passive: true });
     updateMoveTopVisibility();
+
+    // WhatsApp links: app on mobile, web on desktop
+    function updateWhatsappLinks() {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const mobileUrl = 'https://wa.me/919244125899';
+      const desktopUrl = 'https://web.whatsapp.com/send?phone=919244125899';
+      document.querySelectorAll('a[href*="web.whatsapp.com/send?phone=919244125899"],a[href*="wa.me/919244125899"]')
+        .forEach(link => { link.href = isMobile ? mobileUrl : desktopUrl; });
+    }
+    updateWhatsappLinks();
+    window.addEventListener('resize', updateWhatsappLinks);
   </script>
 </body>
 
